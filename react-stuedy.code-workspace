@@ -1,0 +1,38 @@
+{
+  "folders": [
+    {
+      "name": "guGuDan",
+      "path": "./GuGuDan"
+    },
+    {
+      "name": "relayWord",
+      "path": "./RelayWord"
+    },
+    {
+      "name": "root",
+      "path": "."
+    }
+  ],
+  "settings": {
+    "workbench.iconTheme": "material-icon-theme",
+    "files.autoSave": "onWindowChange",
+    "git.confirmSync": false,
+    "workbench.editor.showTabs": true,
+    // 파일 리스트에서 감추기
+    "files.exclude": {
+      "**/.DS_Store": true,
+      "e2e": true,
+      "dist": true,
+      "node_modules": true
+    },
+    // 검색에서 제외시킬 폴더
+    "search.exclude": {
+      "**/.DS_Store": true,
+      "e2e": true,
+      "dist": true,
+      "node_modules": true,
+      "yarn.lock": true,
+      "npm-lock": true
+    },
+  }
+}
