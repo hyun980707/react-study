@@ -1,9 +1,8 @@
 const path = require("path");
 const webpack = require("webpack");
-const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
 
 module.exports = {
-  name: "word-relay-setting",
+  name: "gu-gu-dan-setting",
   mode: "development", // 운영 시 production으로 변경,
   devtool: "eval",
   resolve: {
@@ -29,24 +28,13 @@ module.exports = {
             ],
             "@babel/preset-react",
           ],
-          plugins: ["react-refresh/babel"],
         },
       },
     ],
   },
-  plugins: [
-    new webpack.LoaderOptionsPlugin({ debug: true }),
-    new ReactRefreshWebpackPlugin(),
-  ],
+  plugins: [new webpack.LoaderOptionsPlugin({ debug: true })],
   output: {
     path: path.join(__dirname, "dist"),
     filename: "app.js",
   }, // 출력
-  devServer: {
-    devMiddleware: { publicPath: "/dist" },
-    static: {
-      directory: path.join(__dirname),
-    },
-    hot: true,
-  },
 };

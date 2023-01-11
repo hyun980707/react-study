@@ -7,10 +7,6 @@
     {
       "name": "relayWord",
       "path": "./RelayWord"
-    },
-    {
-      "name": "root",
-      "path": "."
     }
   ],
   "settings": {
@@ -22,8 +18,9 @@
     "files.exclude": {
       "**/.DS_Store": true,
       "e2e": true,
-      "dist": true,
-      "node_modules": true
+      "dist": false,
+      "node_modules": true,
+      "*.workspace": false
     },
     // 검색에서 제외시킬 폴더
     "search.exclude": {

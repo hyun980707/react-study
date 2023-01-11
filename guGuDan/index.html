@@ -1,73 +1,16 @@
-<html>
+<!DOCTYPE html>
+<html lang="ko">
 
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>구구단</title>
-
-  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 </head>
 
 <body>
   <div id="root"></div>
-  <script type="text/babel">
-    'use strict';
-
-    const GuGuDan = () => {
-      const [first, setFirst] = React.useState(Math.ceil(Math.random() * 9));
-      const [second, setSecond] = React.useState(Math.ceil(Math.random() * 9));
-      const [value, setValue] = React.useState('');
-      const [result, setResult] = React.useState('');
-      const inputRef = React.useRef(null);
-
-      const setRandomNumber = () => {
-        return Math.ceil(Math.random() * 9);
-      }
-
-      const onChangeInput = (event) => {
-        event && event.preventDefault();
-
-        setValue(event.target.value);
-      };
-
-      const onSubmitForm = (event) => {
-        event && event.preventDefault();
-
-        if (parseInt(value, 10) === first * second) {
-          /**
-           * setState는 비동기 방식으로 처리한다
-           * setState에서 state의 값을 사용할 때는 function으로 변경하여 prevState를 사용하는걸 추천한다.
-           * 그래야 값이 정확하게 출력이 된다
-           **/
-          setResult('정답: ' + value);
-          setFirst(Math.ceil(Math.random() * 9));
-          setSecond(Math.ceil(Math.random() * 9));
-        } else {
-          setResult('땡')
-        }
-
-        setValue('')
-        inputRef.current.focus();
-      }
-
-      return (
-        <React.Fragment>
-          <div>{first} 곱하기 {second}</div>
-          <form onSubmit={onSubmitForm}>
-            <input ref={inputRef} value={value} onChange={onChangeInput} type="tel" />
-            <button type="button">입력</button>
-          </form>
-          <div>{result}</div>
-        </React.Fragment>
-      )
-    };
-  </script>
-  <script type="text/babel">
-    // ReactDOM.render(React.createElement(LikeButton), document.querySelector('#root'))
-    // ReactDOM.render(<LikeButton />, document.querySelector('#root')) v17
-    ReactDOM.createRoot(document.querySelector('#root')).render(<GuGuDan />) // v18
-  </script>
+  <script src="./dist/app.js"></script>
 </body>
 
 </html>
