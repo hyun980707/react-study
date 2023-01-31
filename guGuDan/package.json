@@ -2,7 +2,7 @@
   "name": "guGuDan",
   "version": "1.0.0",
   "description": "",
-  "main": "client.js",
+  "main": "index.js",
   "scripts": {
     "dev": "webpack serve --env development",
     "test": "echo \"Error: no test specified\" && exit 1"

@@ -1,64 +1,36 @@
-import React, { Component } from "react";
+import React, { useRef, useState } from "react";
 
-export default class WordRelay extends Component {
-  state;
+export default WordRelay = () => {
+  const [word, setWord] = useState("조현우");
+  const [result, setResult] = useState("");
+  const inputEl = useRef(null);
 
-  constructor(props) {
-    super(props);
-
-    this.initialize();
-  }
-
-  initialize() {
-    this.state = {
-      word: "조현우",
-      value: "",
-      result: "",
-    };
-  }
-
-  onSubmitForm = (event) => {
+  const onSubmitForm = (event) => {
     event && event.preventDefault();
 
-    if (this.state.word[this.state.word.length - 1] === this.state.value[0]) {
-      this.setState((prevState) => ({
-        result: "딩동댕",
-        word: prevState.value,
-        value: "",
-      }));
+    console.dir(event.target);
+
+    if (word[word.length - 1] === event.target.children.wordInput.value[0]) {
+      setResult("딩동댕");
+      setWord(event.target.children.wordInput.value);
+      event.target.children.wordInput.value = "";
     } else {
-      this.setState({
-        result: "땡",
-        value: "",
-      });
+      setResult("땡");
+      event.target.children.wordInput.value = "";
     }
 
-    this.input.focus();
+    inputEl.current.focus();
   };
 
-  onRefInput = (e) => {
-    this.input = e;
-  };
-
-  onChangeInput = (event) => {
-    this.setState({ value: event.target.value });
-  };
-
-  render() {
-    return (
-      <>
-        <div>{this.state.word}</div>
-        <form onSubmit={this.onSubmitForm}>
-          <input
-            ref={this.onRefInput}
-            value={this.state.value}
-            onChange={this.onChangeInput}
-            type="text"
-          />
-          <button type="button">입력</button>
-        </form>
-        <div>{this.state.result}</div>
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <div>{word}</div>
+      <form onSubmit={onSubmitForm}>
+        <label htmlFor="wordInput">글자를 입력하세요.</label>
+        <input ref={inputEl} id="wordInput" className="wordInput" type="text" />
+        <button type="button">입력</button>
+      </form>
+      <div>{result}</div>
+    </>
+  );
+};
