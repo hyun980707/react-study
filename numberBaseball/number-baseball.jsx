@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 
 import Try from "./try";
 
@@ -17,6 +17,7 @@ const NumberBaseball = () => {
   const [value, setValue] = useState("");
   const [answer, setAnswer] = useState(getNumbers);
   const [tries, setTries] = useState([]);
+  const inputEl = useRef();
 
   const onChangeInput = (event) => {
     event && event.preventDefault();
@@ -27,7 +28,7 @@ const NumberBaseball = () => {
   const onSubmitForm = (event) => {
     event && event.preventDefault();
 
-    console.log('asd');
+    console.log("asd");
 
     if (value === answer.join("")) {
       setResult("홈런!");
@@ -56,11 +57,11 @@ const NumberBaseball = () => {
           }
         });
 
-          setTries((oldTries) => [
-            ...oldTries,
-            { try: value, result: `${strike} 스트라이크, ${ball} 볼입니다.` },
-          ]);
-          setValue("");
+        setTries((oldTries) => [
+          ...oldTries,
+          { try: value, result: `${strike} 스트라이크, ${ball} 볼입니다.` },
+        ]);
+        setValue("");
       }
     }
   };
@@ -70,6 +71,7 @@ const NumberBaseball = () => {
       <h1>{result}</h1>
       <form onSubmit={onSubmitForm}>
         <input
+          ref={inputEl}
           type="text"
           maxLength={4}
           value={value}

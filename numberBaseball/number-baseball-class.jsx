@@ -1,6 +1,6 @@
-import React, { Component, useRef, useState } from "react";
+import React, { Component, createRef } from "react";
 
-import Try from "./try";
+import Try from "./try-class";
 
 function getNumbers() {
   const candidate = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -14,6 +14,7 @@ function getNumbers() {
 
 export default class NumberBaseball extends Component {
   state;
+  inputEl;
 
   constructor(props) {
     super(props);
@@ -28,6 +29,16 @@ export default class NumberBaseball extends Component {
       answer: getNumbers(),
       tries: [],
     };
+    this.inputEl = createRef();
+  }
+
+  //  shouldComponentUpdate 성능 최적화를 위해 수동으로 변수의 변화가 없을 시 랜더링 안되게 적용
+  shouldComponentUpdate(nextProps, nextState, nextContext) {
+    if (this.state.value !== nextState.value) {
+      return true;
+    }
+
+    return false;
   }
 
   onChangeInput = (event) => {
@@ -94,6 +105,8 @@ export default class NumberBaseball extends Component {
         });
       }
     }
+
+    this.inputEl.current.focus();
   };
 
   render() {
@@ -102,6 +115,7 @@ export default class NumberBaseball extends Component {
         <h1>{this.state.result}</h1>
         <form onSubmit={this.onSubmitForm}>
           <input
+            ref={this.inputEl}
             type="text"
             maxLength={4}
             value={this.state.value}
