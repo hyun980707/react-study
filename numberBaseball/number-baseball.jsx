@@ -12,28 +12,30 @@ function getNumbers() {
     );
 }
 
-export default NumberBaseball = () => {
+const NumberBaseball = () => {
   const [result, setResult] = useState("");
   const [value, setValue] = useState("");
   const [answer, setAnswer] = useState(getNumbers);
   const [tries, setTries] = useState([]);
 
   const onChangeInput = (event) => {
-    event.preventDefault();
+    event && event.preventDefault();
 
     setValue(event.target.value);
   };
 
   const onSubmitForm = (event) => {
-    event.preventDefault();
+    event && event.preventDefault();
+
+    console.log('asd');
 
     if (value === answer.join("")) {
       setResult("홈런!");
       setTries((oldTries) => [...oldTries, { try: value, result: "홈런!" }]);
-      alert("게임을 다시 시작합니다.");
       setValue("");
       setAnswer(getNumbers());
       setTries([]);
+      alert("게임을 다시 시작합니다.");
     } else {
       const answerArray = value.split("").map((value) => parseInt(value, 10));
       let strike = 0;
@@ -41,24 +43,24 @@ export default NumberBaseball = () => {
 
       if (tries.length >= 9) {
         setResult(`10번 넘게 틀려서 실패! 답은 ${answer.join(",")}였습니다.`);
-        alert("게임을 다시 시작합니다.");
         setValue("");
         setAnswer(getNumbers());
         setTries([]);
+        alert("게임을 다시 시작합니다.");
       } else {
-        answerArray.forEach((_value, index) => {
+        answerArray.forEach((value, index) => {
           if (value === answer[index]) {
             strike += 1;
           } else if (answer.includes(value)) {
             ball += 1;
           }
+        });
 
           setTries((oldTries) => [
             ...oldTries,
             { try: value, result: `${strike} 스트라이크, ${ball} 볼입니다.` },
           ]);
           setValue("");
-        });
       }
     }
   };
@@ -85,3 +87,5 @@ export default NumberBaseball = () => {
     </>
   );
 };
+
+export default NumberBaseball;

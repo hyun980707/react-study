@@ -7,7 +7,7 @@ module.exports = {
   mode: "development", // 운영 시 production으로 변경,
   devtool: "eval",
   resolve: {
-    extensions: [".js", ".jsx", "tsx"],
+    extensions: [".js", ".jsx", ".tsx"],
   },
   entry: {
     app: ["./index"],

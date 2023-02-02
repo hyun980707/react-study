@@ -1,10 +1,12 @@
 import React from "react";
 
-export default Try = () => {
+const Try = ({ item }) => {
   return (
     <li>
-      <div>{this.props.item.try}</div>
-      <div>{this.props.item.result}</div>
+      <div>{item.try}</div>
+      <div>{item.result}</div>
     </li>
   );
 };
+
+export default Try;

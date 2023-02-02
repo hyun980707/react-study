@@ -47,12 +47,12 @@ export default class NumberBaseball extends Component {
           { try: this.state.value, result: "홈런!" },
         ],
       });
-      alert("게임을 다시 시작합니다.");
       this.setState({
         value: "",
         answer: getNumbers(),
         tries: [],
       });
+      alert("게임을 다시 시작합니다.");
     } else {
       const answerArray = this.state.value
         .split("")
@@ -67,30 +67,30 @@ export default class NumberBaseball extends Component {
           )}였습니다.`,
         });
 
-        alert("게임을 다시 시작합니다.");
         this.setState({
           value: "",
           answer: getNumbers(),
           tries: [],
         });
+        alert("게임을 다시 시작합니다.");
       } else {
-        answerArray.forEach((_value, index) => {
+        answerArray.forEach((value, index) => {
           if (value === this.state.answer[index]) {
             strike += 1;
           } else if (this.state.answer.includes(value)) {
             ball += 1;
           }
+        });
 
-          this.setState({
-            tries: [
-              ...this.state.tries,
-              {
-                try: this.state.value,
-                result: `${strike} 스트라이크, ${ball} 볼입니다.`,
-              },
-            ],
-            value: "",
-          });
+        this.setState({
+          tries: [
+            ...this.state.tries,
+            {
+              try: this.state.value,
+              result: `${strike} 스트라이크, ${ball} 볼입니다.`,
+            },
+          ],
+          value: "",
         });
       }
     }
